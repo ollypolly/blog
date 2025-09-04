@@ -14,11 +14,11 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   });
 
   return (
-    <article className="prose prose-sm">
+    <article className="prose prose-sm dark:prose-invert">
       <h1>{metadata.title}</h1>
       <time className="text-gray-500 text-sm" dateTime={metadata.date}>
         {formattedDate}
