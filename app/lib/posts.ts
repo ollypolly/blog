@@ -1,11 +1,13 @@
 import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
+import { showTestPosts } from './environment';
 
 export interface Post {
   slug: string;
   title: string;
   date: string;
   spoiler: string;
+  test?: boolean;
 }
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -22,9 +24,19 @@ export async function getAllPosts(): Promise<Post[]> {
         title: metadata.title,
         date: metadata.date,
         spoiler: metadata.spoiler,
+        test: metadata.test || false,
       };
     })
   );
 
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Filter out test posts based on environment
+  const filteredPosts = posts.filter(post => {
+    // If it's a test post and we shouldn't show test posts, exclude it
+    if (post.test && !showTestPosts) {
+      return false;
+    }
+    return true;
+  });
+
+  return filteredPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
