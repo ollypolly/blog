@@ -12,7 +12,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const { content: source, data: metadata } = matter(file);
 
   return (
-    <main style={{ padding: '2rem' }}>
+    <main>
       <h1>{metadata.title}</h1>
       <MDXRemote
         source={source}
