@@ -1,6 +1,7 @@
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
+import rehypeShiki from '@shikijs/rehype';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -26,7 +27,22 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
       <MDXRemote
         source={source}
-        options={{ mdxOptions: { baseUrl: import.meta.url } }}
+        options={{
+          mdxOptions: {
+            baseUrl: import.meta.url,
+            rehypePlugins: [
+              [
+                rehypeShiki,
+                {
+                  themes: {
+                    light: 'github-light',
+                    dark: 'github-dark',
+                  },
+                },
+              ],
+            ],
+          },
+        }}
       />
     </article>
   );
