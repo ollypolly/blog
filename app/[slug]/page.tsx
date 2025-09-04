@@ -18,7 +18,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
   });
 
   return (
-    <article className="prose prose-sm dark:prose-invert">
+    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert">
       <h1>{metadata.title}</h1>
       <time className="text-gray-500 text-sm" dateTime={metadata.date}>
         {formattedDate}

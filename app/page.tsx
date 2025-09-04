@@ -7,15 +7,15 @@ export default async function Home() {
   return (
     <div>
       <section className="mb-12">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           Latest Posts
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
           Here's some things I decided to do
         </p>
       </section>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+      <div className="grid gap-6 lg:grid-cols-1">
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}

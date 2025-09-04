@@ -21,7 +21,7 @@ export const Header = () => {
           </Link>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
             aria-label="Toggle dark mode"
           >
             {isDark ? '☀️' : '🌙'}
