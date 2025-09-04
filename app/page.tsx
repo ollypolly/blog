@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <div>
       <section className="mb-12">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">
           Latest Posts
         </h1>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
