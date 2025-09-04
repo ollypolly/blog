@@ -1,0 +1,54 @@
+---
+title: Mastering CSS Grid Layouts
+date: '2024-02-10'
+spoiler: "CSS Grid has revolutionized how we approach web layouts. Learn the fundamental concepts and practical applications."
+---
+
+## The Power of CSS Grid
+
+CSS Grid provides a two-dimensional layout system that makes complex layouts simple and intuitive.
+
+### Basic Grid Setup
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.header { grid-column: 1 / -1; }
+.sidebar { grid-column: 1; }
+.main { grid-column: 2; }
+.aside { grid-column: 3; }
+.footer { grid-column: 1 / -1; }
+```
+
+### Responsive Grids
+
+```css
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+```
+
+This creates a responsive card layout that automatically adjusts to the container width.
+
+### Grid Areas
+
+Named grid areas make layouts more semantic and easier to maintain:
+
+```css
+.layout {
+  grid-template-areas: 
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
+}
+```
+
+CSS Grid has truly changed the game for web layouts.

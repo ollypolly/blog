@@ -1,0 +1,54 @@
+---
+title: Next.js Server Components Deep Dive
+date: '2024-02-18'
+spoiler: "Understanding React Server Components in Next.js 13+ and how they're changing the way we build web applications."
+---
+
+## Server Components Revolution
+
+React Server Components represent a paradigm shift in how we think about React applications, and Next.js has made them accessible.
+
+### What Are Server Components?
+
+Server Components run on the server and send rendered HTML to the client, reducing bundle size and improving performance.
+
+```jsx
+// This runs on the server
+async function PostList() {
+  const posts = await fetchPosts(); // Direct database access
+  
+  return (
+    <div>
+      {posts.map(post => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
+}
+```
+
+### Benefits
+
+- **Zero JavaScript Bundle**: Server Components don't add to client bundle
+- **Direct Backend Access**: No need for API routes for data fetching
+- **Automatic Code Splitting**: Components are naturally split
+- **SEO Friendly**: Content is server-rendered by default
+
+### Client vs Server Components
+
+```jsx
+// Server Component (default)
+async function ServerComponent() {
+  const data = await fetch('/api/data');
+  return <div>{data.title}</div>;
+}
+
+// Client Component (explicit)
+'use client';
+function ClientComponent() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+}
+```
+
+The future of React development is looking very exciting with these new patterns.

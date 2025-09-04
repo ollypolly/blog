@@ -1,0 +1,37 @@
+---
+title: TypeScript Tips for Better Code
+date: '2024-02-03'
+spoiler: "Essential TypeScript patterns and techniques that have made my code more robust and maintainable."
+---
+
+## Why TypeScript Matters
+
+TypeScript has become an essential tool in modern JavaScript development. Here are some patterns that have transformed my coding experience.
+
+### Advanced Types
+
+```typescript
+type ApiResponse<T> = {
+  data: T;
+  status: 'success' | 'error';
+  message?: string;
+};
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const fetchUser = async (id: number): Promise<ApiResponse<User>> => {
+  // Implementation here
+};
+```
+
+### Utility Types
+
+- `Partial<T>` - Makes all properties optional
+- `Pick<T, K>` - Creates a type with selected properties
+- `Omit<T, K>` - Creates a type without specified properties
+
+These patterns have saved me countless hours of debugging.

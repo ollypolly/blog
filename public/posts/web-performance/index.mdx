@@ -1,0 +1,37 @@
+---
+title: Web Performance Optimization Guide
+date: '2024-01-28'
+spoiler: "Practical techniques to make your web applications faster and more responsive. From lazy loading to code splitting."
+---
+
+## Performance Matters
+
+Website performance directly impacts user experience and business metrics. Here's what I've learned about optimization.
+
+### Core Web Vitals
+
+The three key metrics to focus on:
+
+1. **Largest Contentful Paint (LCP)** - Loading performance
+2. **First Input Delay (FID)** - Interactivity
+3. **Cumulative Layout Shift (CLS)** - Visual stability
+
+### Optimization Techniques
+
+#### Image Optimization
+```html
+<img 
+  src="image.jpg" 
+  alt="Description"
+  loading="lazy"
+  width="800" 
+  height="600"
+/>
+```
+
+#### Code Splitting
+```javascript
+const LazyComponent = lazy(() => import('./LazyComponent'));
+```
+
+Small improvements in performance can lead to significant gains in user satisfaction and conversion rates.

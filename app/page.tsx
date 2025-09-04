@@ -11,7 +11,7 @@ export default async function Home() {
           Latest Posts
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Thoughts, ideas, and stories from my journey
+          Here's some things I decided to do
         </p>
       </section>
 
