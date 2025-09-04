@@ -102,6 +102,7 @@ Set these in Netlify dashboard:
 ## Important Conventions
 
 - Use pnpm, not npm
+- **Always use TypeScript**: Prefer .ts/.tsx files over .js/.jsx, including configs (next.config.ts, not .js)
 - Follow existing responsive patterns
 - Maintain environment-based content filtering
 - Keep components minimal and focused
