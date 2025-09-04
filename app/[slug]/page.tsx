@@ -11,9 +11,19 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const file = await readFile(`./public/posts/${slug}/index.mdx`, 'utf8');
   const { content: source, data: metadata } = matter(file);
 
+  const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
   return (
-    <article>
+    <article className="prose prose-sm">
       <h1>{metadata.title}</h1>
+      <time className="text-gray-500 text-sm" dateTime={metadata.date}>
+        {formattedDate}
+      </time>
+
       <MDXRemote
         source={source}
         options={{ mdxOptions: { baseUrl: import.meta.url } }}
