@@ -4,13 +4,46 @@ date: '2023-12-11'
 spoiler: "The limits of my language mean the limits of my world."
 ---
 
-This is a blog post written in **MDX**. You can add React components:
+# Hello MDX Blog
 
-And code blocks too:
+This is a blog post written in **MDX**. You can add React components inline, or even entire interactive widgets.  
+The goal here is to test **length**, **formatting**, and **syntax highlighting** in a realistic way.
+
+---
+
+## Section 1: Basic Markdown
+
+Here’s some text with **bold**, *italics*, ~~strikethrough~~, and [a link](https://example.com).  
+We can also do blockquotes:
+
+> This is a blockquote. It should render nicely in your design.  
+> It can span multiple lines and contain **emphasis**.
+
+---
+
+## Section 2: Lists
+
+- Item one
+- Item two
+- Item three
+  - Nested item
+  - Another nested item
+
+1. Ordered item one
+2. Ordered item two
+3. Ordered item three
+
+---
+
+## Section 3: Code Blocks
+
+Inline code looks like `const x = 42;`.
+
+And here’s a bigger example:
 
 ```javascript
 function greet(name) {
   return `Hello, ${name}!`;
 }
-console.log(greet('World'));
-```
+
+console.log(greet("World"));

@@ -12,13 +12,13 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const { content: source, data: metadata } = matter(file);
 
   return (
-    <main>
+    <article>
       <h1>{metadata.title}</h1>
       <MDXRemote
         source={source}
         options={{ mdxOptions: { baseUrl: import.meta.url } }}
       />
-    </main>
+    </article>
   );
 };
 
