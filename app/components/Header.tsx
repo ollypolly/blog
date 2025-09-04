@@ -1,7 +1,11 @@
+import Link from 'next/link';
+
 export const Header = () => {
   return (
-    <div>
-      <p>blog.olly.live</p>
-    </div>
+    <header className="text-center py-8">
+      <Link href="/" className="font-light hover:opacity-80 transition-opacity">
+        <span className="font-bold text-blue-600">blog</span>.olly.live
+      </Link>
+    </header>
   );
 };

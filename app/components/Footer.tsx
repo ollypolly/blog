@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
-    <div>
-      <p>blog.olly.live</p>
-    </div>
+    <footer className="text-center py-8 text-gray-500 text-sm">
+      <p>&copy; 2025 blog.olly.live. All rights reserved.</p>
+    </footer>
   );
 };
