@@ -1,14 +1,8 @@
-'use client';
-
 import Link from 'next/link';
-import { DARK, useThemeStore } from '../store/theme';
 import { Container } from './Container';
+import { ThemeToggle } from './ThemeToggle';
 
 export const Header = () => {
-  const { theme, toggleTheme } = useThemeStore();
-
-  const isDark = theme === DARK;
-
   return (
     <header className="text-center">
       <Container>
@@ -19,13 +13,7 @@ export const Header = () => {
             </span>
             <span className="text-gray-900 dark:text-gray-100">.olly.live</span>
           </Link>
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
-            aria-label="Toggle dark mode"
-          >
-            {isDark ? '☀️' : '🌙'}
-          </button>
+          <ThemeToggle />
         </div>
       </Container>
     </header>
