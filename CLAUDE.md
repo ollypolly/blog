@@ -11,6 +11,7 @@ This is a personal blog built with Next.js 15, TypeScript, Tailwind CSS v4, and 
 - **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS v4 (requires `@custom-variant dark (&:where(.dark, .dark *));` in globals.css)
 - **Content**: MDX with `@tailwindcss/typography` and `next-mdx-remote-client`
+- **Interactive Demos**: Sandpack (`@codesandbox/sandpack-react`) for live code examples
 - **Theme**: next-themes for dark mode (replaces custom Zustand implementation)
 - **Package Manager**: pnpm (not npm!)
 - **Deployment**: Netlify
@@ -93,11 +94,38 @@ Set these in Netlify dashboard:
 3. **Tailwind v4 dark mode**: Requires custom variant directive in globals.css
 4. **Layout shift prevention**: Use placeholder elements with same dimensions
 
+## Interactive Code Demos
+
+### Sandpack Integration
+- Use `@codesandbox/sandpack-react` for live, editable code examples
+- Perfect for showing Club Penguin rebuild progress with interactive demos
+- Users can edit code and see changes in real-time
+- Multi-file support for complex examples (components + styles + logic)
+
+### Usage Pattern
+```jsx
+import { Sandpack } from '@codesandbox/sandpack-react'
+
+<Sandpack
+  template="react-ts"
+  files={{
+    'App.tsx': componentCode,
+    'styles.css': styles
+  }}
+  options={{
+    showNavigator: false,
+    showTabs: true,
+    editorHeight: 400
+  }}
+  theme="light"
+/>
+```
+
 ## Future Enhancements
 
-- Interactive MDX components for Club Penguin development demos
-- Consider Sandpack integration for live code examples
 - Real-time project progress tracking components
+- Penguin avatar components for MDX demos
+- WebSocket integration examples
 
 ## Important Conventions
 

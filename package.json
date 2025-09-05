@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@shikijs/rehype": "^3.12.2",
     "gray-matter": "^4.0.3",
     "next": "15.5.2",
