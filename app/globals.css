@@ -19,3 +19,10 @@ html.dark .shiki span {
 html.dark .shiki {
   border-color: rgba(255, 255, 255, 0.1);
 }
+
+/* Center image captions */
+.prose figcaption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.5rem;
+}

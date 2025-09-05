@@ -12,6 +12,7 @@ interface SandpackDemoProps {
   files: SandpackFiles;
   template?: 'react-ts' | 'react' | 'vanilla-ts' | 'vanilla';
   editorHeight?: number;
+  editorWidthPercentage?: number;
   showNavigator?: boolean;
   showTabs?: boolean;
   showLineNumbers?: boolean;
@@ -20,7 +21,8 @@ interface SandpackDemoProps {
 export default function SandpackDemo({
   files,
   template = 'react-ts',
-  editorHeight = 400,
+  editorHeight = 600,
+  editorWidthPercentage = 60,
   showNavigator = false,
   showTabs = true,
   showLineNumbers = true,
@@ -37,7 +39,7 @@ export default function SandpackDemo({
   }
 
   return (
-    <div className="w-[min(100vw-3rem,60rem)] max-w-none mx-auto relative left-1/2 -translate-x-1/2 sm:w-[min(100vw-4rem,60rem)] lg:w-[min(100vw-5rem,60rem)]">
+    <div className="w-[min(100vw-3rem,60rem)] max-w-none mx-auto relative left-1/2 -translate-x-1/2 sm:w-[min(100vw-4rem,60rem)] lg:w-[min(100vw-5rem,80rem)]">
       <Sandpack
         template={template}
         files={files}
@@ -46,6 +48,7 @@ export default function SandpackDemo({
           showTabs,
           showLineNumbers,
           editorHeight,
+          editorWidthPercentage,
         }}
         theme={resolvedTheme as SandpackThemeProp}
       />

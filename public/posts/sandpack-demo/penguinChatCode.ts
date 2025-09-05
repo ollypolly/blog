@@ -4,11 +4,11 @@ import { join } from 'path';
 function getComponentCode() {
   const componentPath = join(
     process.cwd(),
-    'app/components/postComponents/sandpack-demo/PenguinChat.tsx'
+    'public/posts/sandpack-demo/PenguinChat.tsx'
   );
   const stylesPath = join(
     process.cwd(),
-    'app/components/postComponents/sandpack-demo/PenguinChat.css'
+    'public/posts/sandpack-demo/PenguinChat.css'
   );
 
   const componentCode = readFileSync(componentPath, 'utf-8');

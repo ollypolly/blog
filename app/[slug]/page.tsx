@@ -2,7 +2,13 @@ import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import rehypeShiki from '@shikijs/rehype';
-import { mdxComponents } from '@/app/components/mdx-components';
+import rehypeFigure from 'rehype-figure';
+import { globalComponents } from '@/app/components/global-components';
+import { createImageComponent } from '@/app/lib/mdx-image-handler';
+import { loadPostComponents } from '@/app/lib/load-post-components';
+import { getPostNavigation } from '@/app/lib/post-navigation';
+import PostNavigation from '@/app/components/PostNavigation';
+import Comments from '@/app/components/Comments';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -13,6 +19,10 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const file = await readFile(`./public/posts/${slug}/index.mdx`, 'utf8');
   const { content: source, data: metadata } = matter(file);
 
+  const postComponents = await loadPostComponents(slug);
+
+  const { previousPost, nextPost } = await getPostNavigation(slug);
+
   const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -20,7 +30,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
   });
 
   return (
-    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert">
+    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert w-full max-w-none">
       <h1>{metadata.title}</h1>
       <time className="text-gray-500 text-sm" dateTime={metadata.date}>
         {formattedDate}
@@ -28,11 +38,16 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
       <MDXRemote
         source={source}
-        components={mdxComponents}
+        components={{
+          ...globalComponents,
+          ...postComponents,
+          img: createImageComponent(slug),
+        }}
         options={{
           mdxOptions: {
             baseUrl: import.meta.url,
             rehypePlugins: [
+              [rehypeFigure, { className: 'image-figure' }],
               [
                 rehypeShiki,
                 {
@@ -46,6 +61,9 @@ export const PostPage = async ({ params }: PostPageProps) => {
           },
         }}
       />
+
+      <PostNavigation previousPost={previousPost} nextPost={nextPost} />
+      <Comments slug={slug} />
     </article>
   );
 };
