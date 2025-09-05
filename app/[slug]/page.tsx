@@ -6,6 +6,8 @@ import rehypeFigure from 'rehype-figure';
 import { globalComponents } from '@/app/components/global-components';
 import { createImageComponent } from '@/app/lib/mdx-image-handler';
 import { loadPostComponents } from '@/app/lib/load-post-components';
+import { getPostNavigation } from '@/app/lib/post-navigation';
+import PostNavigation from '@/app/components/PostNavigation';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -18,6 +20,8 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
   const postComponents = await loadPostComponents(slug);
 
+  const { previousPost, nextPost } = await getPostNavigation(slug);
+
   const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -25,7 +29,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
   });
 
   return (
-    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert">
+    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert w-full max-w-none">
       <h1>{metadata.title}</h1>
       <time className="text-gray-500 text-sm" dateTime={metadata.date}>
         {formattedDate}
@@ -56,6 +60,8 @@ export const PostPage = async ({ params }: PostPageProps) => {
           },
         }}
       />
+
+      <PostNavigation previousPost={previousPost} nextPost={nextPost} />
     </article>
   );
 };
