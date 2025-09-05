@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.20.0",
+    "@giscus/react": "^3.1.0",
     "@shikijs/rehype": "^3.12.2",
+    "codehike": "^1.0.7",
     "gray-matter": "^4.0.3",
     "next": "15.5.2",
     "next-mdx-remote-client": "^2.1.3",

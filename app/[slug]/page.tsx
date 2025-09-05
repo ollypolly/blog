@@ -8,6 +8,7 @@ import { createImageComponent } from '@/app/lib/mdx-image-handler';
 import { loadPostComponents } from '@/app/lib/load-post-components';
 import { getPostNavigation } from '@/app/lib/post-navigation';
 import PostNavigation from '@/app/components/PostNavigation';
+import Comments from '@/app/components/Comments';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -62,6 +63,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
       />
 
       <PostNavigation previousPost={previousPost} nextPost={nextPost} />
+      <Comments slug={slug} />
     </article>
   );
 };
