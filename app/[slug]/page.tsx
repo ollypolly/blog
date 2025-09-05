@@ -3,6 +3,7 @@ import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import rehypeShiki from '@shikijs/rehype';
 import { mdxComponents } from '@/app/components/mdx-components';
+import { createImageComponent } from '@/app/lib/mdx-image-handler';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -28,7 +29,10 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
       <MDXRemote
         source={source}
-        components={mdxComponents}
+        components={{
+          ...mdxComponents,
+          img: createImageComponent(slug),
+        }}
         options={{
           mdxOptions: {
             baseUrl: import.meta.url,
