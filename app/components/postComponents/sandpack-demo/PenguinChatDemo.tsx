@@ -1,23 +1,13 @@
-'use client'
-
-import { Sandpack } from '@codesandbox/sandpack-react'
-import { penguinChatCode, penguinChatStyles } from './penguinChatCode'
+import SandpackDemo from '@/app/components/SandpackDemo';
+import { penguinChatCode, penguinChatStyles } from './penguinChatCode';
 
 export default function PenguinChatDemo() {
   return (
-    <Sandpack
-      template="react-ts"
+    <SandpackDemo
       files={{
         'App.tsx': penguinChatCode,
-        'PenguinChat.css': penguinChatStyles
+        'PenguinChat.css': penguinChatStyles,
       }}
-      options={{
-        showNavigator: false,
-        showTabs: true,
-        showLineNumbers: true,
-        editorHeight: 400
-      }}
-      theme="light"
     />
-  )
+  );
 }
