@@ -5,6 +5,7 @@ import rehypeShiki from '@shikijs/rehype';
 import rehypeFigure from 'rehype-figure';
 import { mdxComponents } from '@/app/components/mdx-components';
 import { createImageComponent } from '@/app/lib/mdx-image-handler';
+import { loadPostComponents } from '@/app/lib/load-post-components';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -14,6 +15,8 @@ export const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = await params;
   const file = await readFile(`./public/posts/${slug}/index.mdx`, 'utf8');
   const { content: source, data: metadata } = matter(file);
+
+  const postComponents = await loadPostComponents(slug);
 
   const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -32,6 +35,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
         source={source}
         components={{
           ...mdxComponents,
+          ...postComponents,
           img: createImageComponent(slug),
         }}
         options={{
