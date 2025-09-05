@@ -2,6 +2,7 @@ import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import rehypeShiki from '@shikijs/rehype';
+import rehypeFigure from 'rehype-figure';
 import { mdxComponents } from '@/app/components/mdx-components';
 import { createImageComponent } from '@/app/lib/mdx-image-handler';
 
@@ -37,6 +38,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
           mdxOptions: {
             baseUrl: import.meta.url,
             rehypePlugins: [
+              [rehypeFigure, { className: 'image-figure' }],
               [
                 rehypeShiki,
                 {
