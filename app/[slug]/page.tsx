@@ -3,7 +3,7 @@ import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import rehypeShiki from '@shikijs/rehype';
 import rehypeFigure from 'rehype-figure';
-import { mdxComponents } from '@/app/components/mdx-components';
+import { globalComponents } from '@/app/components/global-components';
 import { createImageComponent } from '@/app/lib/mdx-image-handler';
 import { loadPostComponents } from '@/app/lib/load-post-components';
 
@@ -34,7 +34,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
       <MDXRemote
         source={source}
         components={{
-          ...mdxComponents,
+          ...globalComponents,
           ...postComponents,
           img: createImageComponent(slug),
         }}
