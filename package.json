@@ -19,7 +19,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-figure": "^1.0.1",
-    "shiki": "^3.12.2"
+    "shiki": "^3.12.2",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

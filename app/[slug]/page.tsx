@@ -9,6 +9,7 @@ import { loadPostComponents } from '@/app/lib/load-post-components';
 import { getPostNavigation } from '@/app/lib/post-navigation';
 import PostNavigation from '@/app/components/PostNavigation';
 import Comments from '@/app/components/Comments';
+import { remarkTreeTransform } from '@/app/lib/remark-tree-transform';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -46,6 +47,9 @@ export const PostPage = async ({ params }: PostPageProps) => {
         options={{
           mdxOptions: {
             baseUrl: import.meta.url,
+            remarkPlugins: [
+              remarkTreeTransform
+            ],
             rehypePlugins: [
               [rehypeFigure, { className: 'image-figure' }],
               [

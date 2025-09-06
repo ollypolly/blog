@@ -1,0 +1,101 @@
+---
+title: Interactive File Tree Component Demo
+date: 2024-01-16
+spoiler: Showcasing the new ASCII-to-interactive tree component for better project documentation
+test: true
+---
+
+I've built a cool new component that converts ASCII file trees into interactive, collapsible components! Perfect for documenting project structure in my Club Penguin rebuild.
+
+## How It Works
+
+Just use a code block with `tree` as the language, and make sure folders end with `/`:
+
+```tree
+app/
+├── components/
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── TreeNode.tsx
+│   └── SandpackDemo.tsx
+├── lib/
+│   ├── ascii-tree-parser.ts
+│   ├── posts.ts
+│   └── environment.ts
+├── [slug]/
+│   └── page.tsx
+└── globals.css
+```
+
+## Club Penguin Project Structure
+
+Here's what my Club Penguin rebuild project structure looks like:
+
+```tree
+club-penguin-rebuild/
+├── src/
+│   ├── components/
+│   │   ├── game/
+│   │   │   ├── Penguin.tsx
+│   │   │   ├── Igloo.tsx
+│   │   │   └── Snowball.tsx
+│   │   ├── ui/
+│   │   │   ├── ChatBox.tsx
+│   │   │   ├── PlayerList.tsx
+│   │   │   └── GameMenu.tsx
+│   │   └── layout/
+│   │       ├── GameCanvas.tsx
+│   │       └── HUD.tsx
+│   ├── hooks/
+│   │   ├── useWebSocket.ts
+│   │   ├── useGameState.ts
+│   │   └── usePlayerMovement.ts
+│   ├── services/
+│   │   ├── websocket.service.ts
+│   │   ├── game.service.ts
+│   │   └── chat.service.ts
+│   └── types/
+│       ├── game.types.ts
+│       ├── player.types.ts
+│       └── websocket.types.ts
+├── server/
+│   ├── handlers/
+│   │   ├── chat.handler.ts
+│   │   ├── movement.handler.ts
+│   │   └── game.handler.ts
+│   ├── models/
+│   │   ├── Player.ts
+│   │   ├── Room.ts
+│   │   └── Game.ts
+│   └── websocket.server.ts
+└── package.json
+```
+
+## Simple ASCII Format
+
+You can also use simple ASCII characters:
+
+```tree
+docs/
+├── api/
+│   ├── authentication.md
+│   └── websocket.md
+├── guides/
+│   ├── getting-started.md
+│   └── deployment.md
+└── README.md
+```
+
+## Features
+
+- 🎯 **Click to expand/collapse** folders
+- 📁 **Smart folder detection** with trailing `/`
+- 🎨 **File type icons** based on extensions
+- 🌙 **Theme integration** with dark/light mode
+- 📱 **Mobile responsive** with horizontal scrolling
+
+Perfect for showing code organization, API structures, or any hierarchical data in technical documentation!
+
+---
+
+*This makes documenting my Club Penguin rebuild progress so much cleaner and more interactive! 🐧*
