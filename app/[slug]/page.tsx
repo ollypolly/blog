@@ -32,10 +32,18 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
   return (
     <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert w-full max-w-none">
-      <h1>{metadata.title}</h1>
-      <time className="text-gray-500 text-sm" dateTime={metadata.date}>
-        {formattedDate}
-      </time>
+      <div className="mb-8">
+        <h1 className="mb-2">{metadata.title}</h1>
+        {metadata.spoiler && (
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-2 font-medium leading-relaxed">
+            {metadata.spoiler}
+          </p>
+        )}
+        <time className="text-gray-500 text-sm" dateTime={metadata.date}>
+          {formattedDate}
+        </time>
+        <hr className="mt-6 border-gray-200 dark:border-gray-700" />
+      </div>
 
       <MDXRemote
         source={source}
