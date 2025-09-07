@@ -1,5 +1,5 @@
 ---
-title: Rebuilding Club Penguin in modern web technologies
+title: Rebuilding Penguin Chat in modern web technologies
 date: '2025-09-05'
 spoiler: "Follow me along my journey to rebuild an integral part of my childhood in modern web technologies!"
 test: true
@@ -25,13 +25,17 @@ This same tinge of nostalgia is what has spurred me to attempt this project. I i
 
 ## The Club Penguin Scene in 2025
 
-Disney took down Club Penguin in 2017, 12 years after it launched, with the intent to replace it with the now defunct Club Penguin Island, a phone app. This failed quite spectacularly, and it in turn was shut down only a year later in 2018. Why the game was originally shut down and why this attempt at a mobile port failed is a story for another time. Since then numerous private servers have emerged, in attempts to satiate the nostalgic desires of old fans. Notably Club Penguin Rewritten, which eventually got so big it faced legal troubles with Disney, and was taken down in 2022.
+Disney took down Club Penguin in 2017, 12 years after it launched, with the intent to replace it with the now defunct Club Penguin Island, a phone app. This failed quite spectacularly, and it in turn was shut down only a year later in 2018. Why the game was originally shut down and why this attempt at a mobile port failed is a story for another time.
 
 ![Club Penguin's last day in 2017](./last_day_2.png)
 
-Since CPR's shut down, a few projects have popped up here and there, like the new Club Penguin Zero, which should launch in time for Club Penguin's 20th Anniversary in October 2025. These however all still have one major limiting factor, the fact that they use Flash. Most project utilize a flash emulator called Ruffle, to run in modern environments, however it still doesn't support 100% of ActionScript's (the scripting language Club Penguin was written in) features.
+Since then numerous private servers have emerged, in attempts to satiate the nostalgic desires of old fans. Notably Club Penguin Rewritten, which eventually got so big it faced legal troubles with Disney, and was taken down in 2022. Since CPR's shut down, a few projects have popped up here and there, like the new Club Penguin Zero, which should launch in time for Club Penguin's 20th Anniversary in October 2025. 
 
-Club Penguin Journey, on the other hand, takes a completely different approach, being a fully HTML5-based rebuild that uses Phaser (An HTML5 game framework) for rendering and Yukon for server-side functionality. This allows the game to run natively in modern browsers without relying on Flash, providing a smoother, more stable experience. So yes, the goal of recreating the original Club Penguin in HTML5 has already been achieved by a team of about 10 developers, and the game is currently up for the public https://www.cpjourney.net/. 
+These however all still have one major limiting factor, the fact that they use Flash. Most project utilize a flash emulator called Ruffle, to run in modern environments, however it still doesn't support 100% of ActionScript's (the scripting language Club Penguin was written in) features.
+
+Club Penguin Journey, on the other hand, takes a completely different approach, being a fully HTML5-based rebuild that uses Phaser (An HTML5 game framework) for rendering and Yukon for server-side functionality. This allows the game to run natively in modern browsers without relying on Flash, providing a smoother, more stable experience. So yes, the goal of recreating the original Club Penguin in HTML5 has already been achieved by a team of about 10 developers, and the game is currently up for the public - [Club Penguin Journey](https://www.cpjourney.net/). This also allows adding new features more easily, like layering of clothes items and adding new animations.
+
+![Club Penguin Journey's HTML5 Client, built using Phaser](./cpj.png)
 
 Whilst its a great remake and runs very well, it still inherently relies on 2D systems: the clothes, items, and character models are all flat sprites, and the screen layout retains the proportions and limitations of the original game. While CPJ excels at faithfully recreating the classic experience, it remains more focused on replication rather than re-imagining the world for 2025, leaving room for a modernized rebuild that leverages full 3D models, dynamic cameras, and a truly immersive fullscreen experience.
 
@@ -58,7 +62,7 @@ My current MVP includes the following requirements:
 
 So how the hell am I going to do this?
 
-The plan so far, is to create 4 npm packages inside a Turborepo monorepo.
+The plan so far, is to create 5 npm packages inside a Turborepo monorepo.
 
 `@penguin-chat/ui` `packages/ui`
 This is the HTML based UI of the game, anything that's an overlay or not a 3D model can be created isolated in this package. For example the `ChatBar` or the `CharacterModal`, this won't include things like the Penguin model.
@@ -66,7 +70,7 @@ This is the HTML based UI of the game, anything that's an overlay or not a 3D mo
 I'll use Storybook to make developing components in isolation easy.
 
 `@penguin-chat/web` `apps/web`
-This is the renderer of the game - it'll consume the game data from the entities package, and the game ui from the ui package and combine this which any 3D models to render the game state.
+This is the renderer of the game - it'll consume the game data from the entities package, and the game ui from the ui package and combine this with any 3D models to render the game state.
 
 I'll be using Next.js along with React Three Fiber and React Three Drei for the frontend site.
 
@@ -76,8 +80,13 @@ This package exposes the local game state to the renderer, it essentially models
 I've decided to go with an entity management system package called Miniplex, which uses a system very similar to Unity.
 
 `@penguin-chat/api` `apps/api`
-Lastly the api package. For now I'll be using Fastify and Socket.IO to create a stateless web socket api - no database or ORM layer just yet. This means all connections will live in server memory, and once you log off that's it, you're penguin is no more. Sad, yes, but more than suitable for an MVP.
+For now I'll be using Fastify and Socket.IO to create a stateless web socket api - no database or ORM layer just yet. This means all connections will live in server memory, and once you log off that's it, you're penguin is no more. Sad, yes, but more than suitable for an MVP.
+
+`@penguin-chat/types` `packages/types`
+Lastly the shared types package. This contains shared types to be used between the api and the entities package to ensure type safety across the client server boundary. I did consider using tRPC for a while, but thought keeping to a standard api format that could implement REST down the line was more predictable and better practice. This would allow me to easily implement a React Native app down the line or plug in the api into other services.
+
+Turborepo also creates 3 more packages by default, `@penguin-chat/docs`, `@penguin-chat/eslint-config` and `@penguin-chat/typescript-config`
 
 ## The First Step
 
-Now that we've got a plan in place (and I'm sure they'll be hiccups along the way), we can move onto the first stage, project setup.
+Now that we've got a plan in place (and I'm sure they'll be hiccups along the way), we can move onto the first stage, project setup and api creation.
