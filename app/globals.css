@@ -48,6 +48,104 @@ html.dark pre.shiki {
   margin-top: 0.5rem;
 }
 
+/* Heading anchor links */
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  position: relative;
+  scroll-margin-top: 1.5rem;
+}
+
+.anchor-link {
+  position: absolute;
+  left: -1.2em;
+  width: 1em;
+  color: var(--tw-prose-headings, currentColor);
+  opacity: 0;
+  text-decoration: none !important;
+  background: none !important;
+  font-weight: 400;
+  transition: opacity 0.15s ease;
+}
+
+.anchor-link::before {
+  content: '#';
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6):hover .anchor-link {
+  opacity: 0.4;
+}
+
+.anchor-link:hover {
+  opacity: 1 !important;
+}
+
+/* Code block wrapper with toolbar */
+.code-block-wrapper {
+  position: relative;
+}
+
+.code-block-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem 0.35rem 1rem;
+  background: oklch(0.96 0 0);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-family: ui-monospace, monospace;
+}
+
+html.dark .code-block-toolbar {
+  background: oklch(0.2 0 0);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.code-block-wrapper pre.shiki {
+  border-radius: 0 0 0.5rem 0.5rem;
+  border-top: none;
+  margin-top: 0 !important;
+}
+
+.code-lang {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: oklch(0.55 0 0);
+}
+
+html.dark .code-lang {
+  color: oklch(0.6 0 0);
+}
+
+.copy-btn {
+  font-size: 0.7rem;
+  font-family: ui-monospace, monospace;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: oklch(0.5 0 0);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+html.dark .copy-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: oklch(0.6 0 0);
+}
+
+.copy-btn:hover {
+  background: oklch(0.9 0 0);
+  color: oklch(0.2 0 0);
+}
+
+html.dark .copy-btn:hover {
+  background: oklch(0.3 0 0);
+  color: oklch(0.9 0 0);
+}
+
 /* Funky developer link styles */
 @keyframes gradient-flow {
   0%   { background-position: 0% 50%; }

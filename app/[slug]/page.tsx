@@ -3,6 +3,8 @@ import { readdir, readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import rehypeShiki from '@shikijs/rehype';
 import rehypeFigure from 'rehype-figure';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { globalComponents } from '@/app/components/global-components';
 import { createImageComponent } from '@/app/lib/mdx-image-handler';
 import { loadPostComponents } from '@/app/lib/load-post-components';
@@ -10,6 +12,7 @@ import { getPostNavigation } from '@/app/lib/post-navigation';
 import PostNavigation from '@/app/components/PostNavigation';
 import Comments from '@/app/components/Comments';
 import { remarkTreeTransform } from '@/app/lib/remark-tree-transform';
+import CodeBlock from '@/app/components/CodeBlock';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -61,12 +64,15 @@ export const PostPage = async ({ params }: PostPageProps) => {
               {children}
             </a>
           ),
+          pre: CodeBlock,
         }}
         options={{
           mdxOptions: {
             baseUrl: import.meta.url,
             remarkPlugins: [remarkTreeTransform],
             rehypePlugins: [
+              rehypeSlug,
+              [rehypeAutolinkHeadings, { behavior: 'prepend', properties: { className: ['anchor-link'], ariaHidden: true, tabIndex: -1 } }],
               [rehypeFigure, { className: 'image-figure' }],
               [
                 rehypeShiki,
