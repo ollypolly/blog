@@ -24,6 +24,16 @@ NOTES — delete before publishing:
 
 {/* CODE SNIPPETS — add any inline code examples here */}
 
+```ts
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+```
+
 <HtmlInCanvasDemo />
 
 {/* DEMO NOTES — anything to explain about the demo above */}

@@ -16,11 +16,15 @@ html.dark .shiki span {
 }
 
 @media (min-width: 640px) {
-  :root { --code-font-size: 14px; }
+  :root {
+    --code-font-size: 14px;
+  }
 }
 
 @media (min-width: 1024px) {
-  :root { --code-font-size: 15px; }
+  :root {
+    --code-font-size: 15px;
+  }
 }
 
 /* Code block and Sandpack shared styling */
@@ -87,8 +91,8 @@ html.dark pre.shiki {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.35rem 0.75rem 0.35rem 1rem;
-  background: oklch(0.96 0 0);
+  padding: 0.35rem 0.35rem 0.35rem 1rem;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: none;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -96,7 +100,7 @@ html.dark pre.shiki {
 }
 
 html.dark .code-block-toolbar {
-  background: oklch(0.2 0 0);
+  background: #24292e;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -128,7 +132,9 @@ html.dark .code-lang {
   background: transparent;
   color: oklch(0.5 0 0);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 html.dark .copy-btn {
@@ -148,9 +154,15 @@ html.dark .copy-btn:hover {
 
 /* Funky developer link styles */
 @keyframes gradient-flow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .prose a {
@@ -164,7 +176,9 @@ html.dark .copy-btn:hover {
   background-repeat: no-repeat;
   padding-bottom: 0.05em;
   border-radius: 1px;
-  transition: background-size 0.2s ease, color 0.15s ease;
+  transition:
+    background-size 0.2s ease,
+    color 0.15s ease;
 }
 
 .prose a:hover {
@@ -172,9 +186,9 @@ html.dark .copy-btn:hover {
   background-image: linear-gradient(
     90deg,
     oklch(0.68 0.28 340),
-    oklch(0.60 0.29 300),
+    oklch(0.6 0.29 300),
     oklch(0.62 0.27 240),
-    oklch(0.60 0.29 300),
+    oklch(0.6 0.29 300),
     oklch(0.68 0.28 340)
   );
   background-size: 400% 100%;
@@ -188,8 +202,8 @@ html.dark .prose a {
 }
 
 /* External link arrow indicator */
-.prose a[href^="http"]::after,
-.prose a[href^="https"]::after {
+.prose a[href^='http']::after,
+.prose a[href^='https']::after {
   content: '↗';
   font-size: 0.65em;
   vertical-align: super;
@@ -208,7 +222,9 @@ html.dark .prose a {
   background-position: 0 100%;
   background-repeat: no-repeat;
   border-radius: 1px;
-  transition: background-size 0.2s ease, color 0.15s ease;
+  transition:
+    background-size 0.2s ease,
+    color 0.15s ease;
 }
 
 .footer-link:hover {
@@ -216,9 +232,9 @@ html.dark .prose a {
   background-image: linear-gradient(
     90deg,
     oklch(0.68 0.28 340),
-    oklch(0.60 0.29 300),
+    oklch(0.6 0.29 300),
     oklch(0.62 0.27 240),
-    oklch(0.60 0.29 300),
+    oklch(0.6 0.29 300),
     oklch(0.68 0.28 340)
   );
   background-size: 400% 100%;

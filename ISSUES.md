@@ -1,5 +1,12 @@
 # Known Issues
 
+## Todo
+
+- [ ] `/now` page — what I'm focused on right now (projects, learning, location). See nownownow.com
+- [ ] `/uses` page — dev setup: editor, theme, font, terminal, hardware. See uses.tech
+- [ ] Merge portfolio into this site
+- [ ] Refactor `globals.css` — it's becoming a god-file; scope styles closer to components, split by concern
+
 ## Hydration mismatch on post pages
 
 **Status:** Open  
