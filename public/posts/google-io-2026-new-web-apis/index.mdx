@@ -80,21 +80,3 @@ TODO: add your own take — did the transition feel smooth? Any gotchas with `vi
 ## The pattern I'm seeing
 
 TODO: flesh this out, but the through-line is: the browser is aggressively closing the gap between "native" and "web." HTML-in-Canvas blurs the line between DOM and GPU. Element-scoped transitions give you fine-grained animation control that previously needed a full animation library. Worth keeping an eye on.
-
----
-
-```typescript
-// element-scoped view transition
-const list = document.querySelector('.my-list');
-
-function shuffle(items: string[]): string[] {
-  return [...items].sort(() => Math.random() - 0.5);
-}
-
-list?.startViewTransition(() => {
-  const sorted = shuffle(['Apple', 'Banana', 'Cherry']);
-  console.log('shuffled:', sorted);
-});
-```
-
-<StyleCheckDemo />

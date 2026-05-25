@@ -24,14 +24,19 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
   const { previousPost, nextPost } = await getPostNavigation(slug);
 
-  const formattedDate = new Date(metadata.date).toLocaleDateString('en-US', {
+  const formattedDate = new Date(
+    `${metadata.date}T12:00:00`,
+  ).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
   return (
-    <article className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert w-full max-w-none">
+    <div
+      role="article"
+      className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert w-full max-w-none"
+    >
       <div className="mb-8">
         <h1 className="mb-2">{metadata.title}</h1>
         {metadata.spoiler && (
@@ -55,9 +60,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
         options={{
           mdxOptions: {
             baseUrl: import.meta.url,
-            remarkPlugins: [
-              remarkTreeTransform
-            ],
+            remarkPlugins: [remarkTreeTransform],
             rehypePlugins: [
               [rehypeFigure, { className: 'image-figure' }],
               [
@@ -76,7 +79,7 @@ export const PostPage = async ({ params }: PostPageProps) => {
 
       <PostNavigation previousPost={previousPost} nextPost={nextPost} />
       <Comments slug={slug} />
-    </article>
+    </div>
   );
 };
 
