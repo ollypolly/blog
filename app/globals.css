@@ -47,3 +47,88 @@ html.dark pre.shiki {
   font-style: italic;
   margin-top: 0.5rem;
 }
+
+/* Funky developer link styles */
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.prose a {
+  --link-color: oklch(0.52 0.18 195);
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  background-image: linear-gradient(var(--link-color), var(--link-color));
+  background-size: 100% 0.1em;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 0.05em;
+  border-radius: 1px;
+  transition: background-size 0.2s ease, color 0.15s ease;
+}
+
+.prose a:hover {
+  color: oklch(0.97 0.01 0);
+  background-image: linear-gradient(
+    90deg,
+    oklch(0.68 0.28 340),
+    oklch(0.60 0.29 300),
+    oklch(0.62 0.27 240),
+    oklch(0.60 0.29 300),
+    oklch(0.68 0.28 340)
+  );
+  background-size: 400% 100%;
+  background-position: 0% 50%;
+  border-radius: 2px;
+  animation: gradient-flow 4s linear infinite;
+}
+
+html.dark .prose a {
+  --link-color: oklch(0.72 0.16 195);
+}
+
+/* External link arrow indicator */
+.prose a[href^="http"]::after,
+.prose a[href^="https"]::after {
+  content: '↗';
+  font-size: 0.65em;
+  vertical-align: super;
+  margin-left: 0.2em;
+  opacity: 0.7;
+}
+
+/* Footer link */
+.footer-link {
+  --link-color: oklch(0.52 0.18 195);
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  background-image: linear-gradient(var(--link-color), var(--link-color));
+  background-size: 100% 0.1em;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  border-radius: 1px;
+  transition: background-size 0.2s ease, color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: oklch(0.97 0.01 0);
+  background-image: linear-gradient(
+    90deg,
+    oklch(0.68 0.28 340),
+    oklch(0.60 0.29 300),
+    oklch(0.62 0.27 240),
+    oklch(0.60 0.29 300),
+    oklch(0.68 0.28 340)
+  );
+  background-size: 400% 100%;
+  background-position: 0% 50%;
+  border-radius: 2px;
+  animation: gradient-flow 4s linear infinite;
+}
+
+html.dark .footer-link {
+  --link-color: oklch(0.72 0.16 195);
+}

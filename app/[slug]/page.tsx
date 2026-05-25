@@ -56,6 +56,11 @@ export const PostPage = async ({ params }: PostPageProps) => {
           ...globalComponents,
           ...postComponents,
           img: createImageComponent(slug),
+          a: ({ href, children, ...props }) => (
+            <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+              {children}
+            </a>
+          ),
         }}
         options={{
           mdxOptions: {

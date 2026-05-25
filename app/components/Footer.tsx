@@ -7,7 +7,7 @@ export const Footer = () => {
           href="https://github.com/ollypolly"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+          className="footer-link"
         >
           @ollypolly
         </a>
