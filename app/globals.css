@@ -10,14 +10,35 @@ html.dark .shiki span {
   background-color: var(--shiki-dark-bg) !important;
 }
 
-/* Soft border for code blocks */
-.shiki {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
+/* Code block font size scale */
+:root {
+  --code-font-size: 13px;
 }
 
-html.dark .shiki {
-  border-color: rgba(255, 255, 255, 0.1);
+@media (min-width: 640px) {
+  :root { --code-font-size: 14px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --code-font-size: 15px; }
+}
+
+/* Code block and Sandpack shared styling */
+pre.shiki {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.shiki code {
+  font-size: var(--code-font-size) !important;
+}
+
+html.dark pre.shiki {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sp-wrapper {
+  --sp-font-size: var(--code-font-size) !important;
 }
 
 /* Center image captions */
