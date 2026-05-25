@@ -11,8 +11,7 @@ function extractText(node: React.ReactNode): string {
 
 export default function CodeBlock({ children, ...props }: React.ComponentProps<'pre'>) {
   const code = extractText(children);
-  const codeProps = (children as React.ReactElement<Record<string, unknown>>)?.props;
-  const lang = codeProps?.['data-language'] as string | undefined;
+  const lang = (props as Record<string, unknown>)['data-language'] as string | undefined;
 
   return (
     <div className="code-block-wrapper">

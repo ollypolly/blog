@@ -81,6 +81,15 @@ export const PostPage = async ({ params }: PostPageProps) => {
                     light: 'github-light',
                     dark: 'github-dark',
                   },
+                  transformers: [
+                    {
+                      name: 'set-language-on-pre',
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      pre(node: any) {
+                        node.properties['data-language'] = (this as any).options.lang;
+                      },
+                    },
+                  ],
                 },
               ],
             ],
