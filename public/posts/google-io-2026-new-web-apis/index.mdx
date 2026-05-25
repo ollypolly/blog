@@ -1,0 +1,82 @@
+---
+title: "Trying out the coolest new web APIs from Google I/O 2026"
+date: "2026-05-25"
+spoiler: "HTML-in-Canvas and element-scoped View Transitions — I tried them so you don't have to."
+test: true
+---
+
+Google I/O 2026 had a few genuinely exciting web platform announcements mixed in with the usual AI noise. Two caught my eye: the HTML-in-Canvas API (render real DOM inside a WebGL canvas) and element-scoped View Transitions (run concurrent transitions per element, not just the whole page). I spent some time playing with both. Here's what I found.
+
+---
+
+## HTML-in-Canvas
+
+TODO: explain the problem this solves — the historical tradeoff between DOM (accessible, interactive, searchable) and canvas/WebGL (performant, GPU-accelerated, visually expressive). You always had to pick one.
+
+The new HTML-in-Canvas API lets you render actual DOM elements — forms, inputs, text — directly into a WebGL or WebGPU texture. The browser handles layout, accessibility, find-in-page, and screen readers. You get the GPU.
+
+It's in origin trial (Chrome 148–150). To try it in Chrome Canary, enable `chrome://flags/#canvas-draw-element`.
+
+The core API looks like this:
+
+```html
+<canvas layoutsubtree>
+  <div id="my-element">
+    <input type="text" placeholder="I live inside WebGL now" />
+  </div>
+</canvas>
+```
+
+```javascript
+const ctx = canvas.getContext('2d');
+canvas.onpaint = () => {
+  ctx.drawElementImage(document.getElementById('my-element'), 0, 0);
+};
+```
+
+TODO: describe what you actually built / tried here. What worked? What felt weird?
+
+Here's a simplified demo showing the concept (simulated — the real API requires Chrome Canary):
+
+<HtmlInCanvasDemo />
+
+TODO: note the real difference — the actual API keeps the element interactive *inside* the canvas, so you can click inputs, select text, etc. This demo is just a visual approximation.
+
+**What's rough:** no native scrolling (you have to wire it up yourself in JS), cross-origin iframes are blocked for obvious security reasons, and it's Chrome-only for now. But the potential is significant — think 3D UI in games, GPU-accelerated map labels, design tools with real form elements.
+
+---
+
+## Element-scoped View Transitions
+
+TODO: explain what the original View Transitions API was — document-level transitions that animated the whole page between states. Great for page navigations, but clunky when you only want to animate a small component.
+
+Chrome 147 (stable, no flag needed) adds `Element.startViewTransition()`. Instead of transitioning the whole document, you scope it to a subtree. Multiple transitions can run concurrently without blocking each other or the rest of the page.
+
+Before (document-level):
+```javascript
+document.startViewTransition(() => {
+  reorderList();
+});
+```
+
+After (element-scoped):
+```javascript
+const list = document.querySelector('.my-list');
+list.startViewTransition(() => {
+  reorderList();
+});
+```
+
+The real win: two separate lists can animate simultaneously, and the rest of the page stays interactive during both.
+
+<ViewTransitionsDemo />
+
+TODO: add your own take — did the transition feel smooth? Any gotchas with `view-transition-name` when scoping? Note the `if ('startViewTransition' in el)` fallback for older browsers.
+
+**What's good:** it's stable in Chrome 147, the API is dead simple, and it handles the layering issues with `position: fixed` elements that the document-level API always got wrong.
+
+---
+
+## The pattern I'm seeing
+
+TODO: flesh this out, but the through-line is: the browser is aggressively closing the gap between "native" and "web." HTML-in-Canvas blurs the line between DOM and GPU. Element-scoped transitions give you fine-grained animation control that previously needed a full animation library. Worth keeping an eye on.

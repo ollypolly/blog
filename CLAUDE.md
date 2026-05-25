@@ -119,22 +119,40 @@ Set these in Netlify dashboard:
 
 ### Usage Pattern
 
-```jsx
-import { Sandpack } from '@codesandbox/sandpack-react';
+**Never inline code strings in MDX or demo components.** Always store demo source files on disk and read them with `readFileSync`. The pattern:
 
-<Sandpack
-  template="react-ts"
-  files={{
-    'App.tsx': componentCode,
-    'styles.css': styles,
-  }}
-  options={{
-    showNavigator: false,
-    showTabs: true,
-    editorHeight: 400,
-  }}
-  theme="light"
-/>;
+1. **Source files** — actual demo code as real files alongside the post (e.g. `MyDemo.ts`, `MyDemo.html`)
+2. **Code loader** — a `*Code.ts` that reads them with `readFileSync` and exports the strings
+3. **Demo component** — a `*Demo.tsx` that imports from the code loader and passes to `<SandpackDemo />`
+4. **`components.tsx`** — exports all demo components so MDX can use them by name
+5. **MDX** — uses `<MyDemo />` directly, no inline Sandpack props
+
+```
+public/posts/my-post/
+├── index.mdx          ← uses <MyDemo />
+├── components.tsx     ← export { default as MyDemo } from './MyDemo'
+├── MyDemoDemo.tsx     ← renders <SandpackDemo files={...} />
+├── MyDemoCode.ts      ← readFileSync to load source files
+├── MyDemo.ts          ← actual demo source
+└── MyDemo.html        ← actual demo HTML
+```
+
+```ts
+// MyDemoCode.ts
+import { readFileSync } from 'fs';
+import { join } from 'path';
+const base = join(process.cwd(), 'public/posts/my-post');
+export const myDemoHtml = readFileSync(join(base, 'MyDemo.html'), 'utf-8');
+export const myDemoTs = readFileSync(join(base, 'MyDemo.ts'), 'utf-8');
+```
+
+```tsx
+// MyDemoDemo.tsx
+import SandpackDemo from '@/app/components/SandpackDemo';
+import { myDemoHtml, myDemoTs } from './MyDemoCode';
+export default function MyDemoDemo() {
+  return <SandpackDemo template="vanilla-ts" files={{ 'index.html': myDemoHtml, 'index.ts': myDemoTs }} />;
+}
 ```
 
 ## Future Enhancements
