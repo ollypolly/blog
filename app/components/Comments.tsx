@@ -34,7 +34,7 @@ export default function Comments({ slug }: CommentsProps) {
         reactionsEnabled="1"
         emitMetadata="0"
         inputPosition="top"
-        theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+        theme={resolvedTheme === 'dark' ? 'cobalt' : 'light'}
         lang="en"
         loading="lazy"
       />
